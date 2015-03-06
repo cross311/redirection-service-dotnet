@@ -35,10 +35,11 @@ namespace RedirectionService.WebApi.Controllers
 
         public Redirection Post(string token, string location)
         {
-            var forTokenRedirectToLocationRequest = new ForTokenRedirectToLocationRequest(token: token, location: location);
-            var redirection = _RedirectionService.ForTokenRedirectToLocation(forTokenRedirectToLocationRequest);
+            var redirection = new Redirection(token, location);
+            var forTokenRedirectToLocationRequest = new ForTokenRedirectToLocationRequest(token: redirection.Token, location: redirection.Location);
+            var savedRedirection = _RedirectionService.ForTokenRedirectToLocation(forTokenRedirectToLocationRequest);
 
-            return redirection;
+            return savedRedirection;
         }
     }
 }

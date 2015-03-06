@@ -15,6 +15,12 @@ namespace RedirectionService.WebApi
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+                name: "token",
+                routeTemplate: "api/redirection/{token}",
+                defaults: new { controller = "Redirection", token = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
