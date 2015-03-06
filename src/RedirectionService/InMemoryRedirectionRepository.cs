@@ -21,7 +21,7 @@ namespace RedirectionService
         public Redirection GetRedirectionForToken(string token)
         {
             if (!_Database.ContainsKey(token))
-                return Redirection.Empty;
+                return Redirection.Null;
 
             var redirection = _Database[token];
 

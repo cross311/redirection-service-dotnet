@@ -108,5 +108,19 @@ namespace RedirectionService.Test
             redirection.Token.Should().Be(token);
             redirection.Location.Should().Be(updatedLocation);
         }
+
+        [TestMethod]
+        public void ReturnNullRedirectionIfRedirectionDoesNotExist()
+        {
+            // arrange
+            var token = @"test_token";
+            var locationToRedirectForTokenRequest = new LocationToRedirectForTokenRequest(token);
+
+            // act
+            var redirection = _RedirectionService.LocationToRedirectForToken(locationToRedirectForTokenRequest);
+
+            //assert
+            redirection.Should().Be(Redirection.Null);
+        }
     }
 }

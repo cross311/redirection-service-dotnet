@@ -53,7 +53,60 @@ namespace RedirectionService.Test
             // assert
             englishRedirection.Location.Should().Be(englishLocation);
             japaneseRedirection.Location.Should().Be(japaneseLocation);
-
         }
+
+        [TestMethod]
+        public void AndNotErrorIfLanguageEmpty()
+        {
+            //arrange
+            var token = @"test_token";
+            var englishLocation = @"http://www.test_token_redirection_location.com?lang=eng";
+            var languageRedirectionOption = "lang";
+
+            var englishForTokenRedirectToLocationRequest = new ForTokenRedirectToLocationRequest(
+                                                        token: token,
+                                                        location: englishLocation,
+                                                        options: new[] { new RedirectionOption(languageRedirectionOption, string.Empty) });
+
+            _RedirectionService.ForTokenRedirectToLocation(englishForTokenRedirectToLocationRequest);
+
+            var englishLocationToRedirectForTokenRequest = new LocationToRedirectForTokenRequest(
+                                                        token: token,
+                                                        options: new[] { new RedirectionOption(languageRedirectionOption, string.Empty) });
+
+            // act
+            var englishRedirection = _RedirectionService.LocationToRedirectForToken(englishLocationToRedirectForTokenRequest);
+
+            // assert
+            englishRedirection.Location.Should().Be(englishLocation);
+        }
+
+        [TestMethod]
+        public void AndNotReturnLanguageBasedRedirectionIfNoLanguagePassedIn()
+        {
+            //arrange
+            var token = @"test_token";
+            var englishLocation = @"http://www.test_token_redirection_location.com?lang=eng";
+            var languageRedirectionOption = "lang";
+            var englishLanguage = @"eng";
+
+            var englishForTokenRedirectToLocationRequest = new ForTokenRedirectToLocationRequest(
+                                                        token: token,
+                                                        location: englishLocation,
+                                                        options: new[] { new RedirectionOption(languageRedirectionOption, englishLanguage) });
+
+            _RedirectionService.ForTokenRedirectToLocation(englishForTokenRedirectToLocationRequest);
+
+            var englishLocationToRedirectForTokenRequest = new LocationToRedirectForTokenRequest(
+                                                        token: token);
+
+            // act
+            var nullRedirection = _RedirectionService.LocationToRedirectForToken(englishLocationToRedirectForTokenRequest);
+
+            // assert
+            nullRedirection.Should().Be(Redirection.Null);
+        }
+
+
     }
 }

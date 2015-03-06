@@ -22,6 +22,6 @@
         }
 
         // NULL VALUE PATTERN
-        public readonly static Redirection Empty = new Redirection(string.Empty, string.Empty);
+        public readonly static Redirection Null = new Redirection(string.Empty, string.Empty);
     }
 }
