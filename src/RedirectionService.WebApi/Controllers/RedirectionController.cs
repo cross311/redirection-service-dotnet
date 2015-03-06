@@ -22,6 +22,7 @@ namespace RedirectionService.WebApi.Controllers
             _RedirectionService = redirectionService;
         }
 
+        // TODO: need to accept options
         public IHttpActionResult Get(string token)
         {
             var locationToRedirectForTokenRequest = new LocationToRedirectForTokenRequest(token);
@@ -33,6 +34,7 @@ namespace RedirectionService.WebApi.Controllers
             return Redirect(redirection.Location);
         }
 
+        // TODO: Get this to run off a model. need to accept options
         public Redirection Post(string token, string location)
         {
             var redirection = new Redirection(token, location);
