@@ -19,7 +19,6 @@ If no redirection location has been provided a 404 not found will be returned.
 
 BODY: {'redirection_location':'[redirection_location_url]'}
 
-Responds with 201 created if the static redirection token has never had a redirection token.
-If static redirection token already had a redirection location responds with 200 Ok and the body will have the old location.
+Responds with 200 ok with the token and location.
 
 

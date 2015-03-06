@@ -57,5 +57,30 @@ namespace RedirectionService.Test
             redirection.Token.Should().Be(token);
             redirection.Location.Should().Be(location);
         }
+
+        [TestMethod]
+        public void IgnoreCaseOfTokenWhenReturningRedirectionLocationForRedirectionToken()
+        {
+            //arrange
+            var lowerCaseToken = @"test_token";
+            var upperCaseToken = lowerCaseToken.ToUpper();
+            var location = @"http://www.test_token_redirection_location.com";
+
+            var forTokenRedirectToLocationRequest = new ForTokenRedirectToLocationRequest(
+                                                        token: lowerCaseToken,
+                                                        location: location);
+
+            _RedirectionService.ForTokenRedirectToLocation(forTokenRedirectToLocationRequest);
+
+            var locationToRedirectForTokenRequest = new LocationToRedirectForTokenRequest(
+                                                        token: upperCaseToken);
+
+            // act
+            var redirection = _RedirectionService.LocationToRedirectForToken(locationToRedirectForTokenRequest);
+
+            // assert
+            redirection.Token.Should().Be(lowerCaseToken);
+            redirection.Location.Should().Be(location);
+        }
     }
 }
