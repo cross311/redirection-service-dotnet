@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
@@ -152,13 +153,23 @@ namespace RedirectionService
 
     public sealed class ForTokenRedirectToLocationRequest
     {
+        private readonly static RedirectionOption[] _NoRedirectionOptions = new RedirectionOption[0];
+
         private readonly string _Token;
         private readonly string _Location;
+        private readonly RedirectionOption[] _Options;
 
         public ForTokenRedirectToLocationRequest(string token, string location)
         {
             _Token = token;
             _Location = location;
+            _Options = _NoRedirectionOptions;
+        }
+
+        public ForTokenRedirectToLocationRequest(string token, string location, IEnumerable<RedirectionOption> options)
+            : this(token, location)
+        {
+            _Options = options.ToArray();
         }
 
         public string Token
@@ -170,20 +181,54 @@ namespace RedirectionService
         {
             get { return _Location; }
         }
+
+        public IList<RedirectionOption> Options
+        {
+            get { return _Options; }
+        }
     }
 
     public sealed class LocationToRedirectForTokenRequest
     {
+        private readonly static RedirectionOption[] _NoRedirectionOptions = new RedirectionOption[0];
+
         private readonly string _Token;
+        private readonly RedirectionOption[] _Options;
 
         public LocationToRedirectForTokenRequest(string token)
         {
             _Token = token;
         }
 
+        public LocationToRedirectForTokenRequest(string token, IEnumerable<RedirectionOption> options)
+            : this(token)
+        {
+            _Options = options.ToArray();
+        }
+
         public string Token
         {
             get { return _Token; }
         }
+
+        public IList<RedirectionOption> Options
+        {
+            get { return _Options; }
+        }
+    }
+
+    public sealed class RedirectionOption
+    {
+        private readonly KeyValuePair<string, string> _Option;
+
+        public RedirectionOption(string optionKey, string value)
+        {
+            _Option = new KeyValuePair<string, string>(optionKey, value);
+        }
+
+        public string Key   { get { return _Option.Key; } }
+        public string Value { get { return _Option.Value; } }
+
+        internal readonly static RedirectionOption Empty = new RedirectionOption(string.Empty,string.Empty);
     }
 }
