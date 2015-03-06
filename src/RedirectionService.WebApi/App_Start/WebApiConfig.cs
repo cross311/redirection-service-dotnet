@@ -21,4 +21,14 @@ namespace RedirectionService.WebApi
             );
         }
     }
+
+    public static class RedirectionServiceConfig
+    {
+        public static IRedirectionService RedirectionService;
+
+        static RedirectionServiceConfig()
+        {
+            RedirectionService = new RedirectionServiceFactory().Build();
+        }
+    }
 }
