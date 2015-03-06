@@ -38,6 +38,7 @@ namespace RedirectionService.WebApi.Tests.Controllers
             Assert.IsInstanceOfType(result, typeof(System.Web.Http.Results.RedirectResult));
             Assert.AreEqual(new Uri(location), (result as System.Web.Http.Results.RedirectResult).Location);
         }
+
         [TestMethod]
         public void Get_NotFound()
         {
@@ -58,6 +59,31 @@ namespace RedirectionService.WebApi.Tests.Controllers
             // Assert
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(NotFoundResult));
+        }
+
+        [TestMethod]
+        public void Post_HappyPath()
+        {
+            // Arrange
+            var token = "token";
+            var location = "http://location.com";
+
+            var redirectionService = MockRepository.GenerateStub<IRedirectionService>();
+            var controller = new RedirectionController(redirectionService);
+
+            redirectionService.Expect(
+                m =>
+                    m.ForTokenRedirectToLocation(
+                        Arg<ForTokenRedirectToLocationRequest>.Matches(r => r.Token.Equals(token) && r.Location.Equals(location))))
+                .Return(new Redirection(token, location));
+
+            // Act
+            var result = controller.Post(token, location);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(token, result.Token);
+            Assert.AreEqual(location, result.Location);
         }
     }
 }
