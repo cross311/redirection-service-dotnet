@@ -7,15 +7,15 @@ namespace RedirectionService
     {
         private readonly static RedirectionOption[] _NoRedirectionOptions = new RedirectionOption[0];
 
-        private readonly string _Token;
-        private readonly string _Location;
-        private readonly RedirectionOption[] _Options;
+        private readonly string                     _Token;
+        private readonly string                     _Location;
+        private readonly RedirectionOption[]        _Options;
 
         public ForTokenRedirectToLocationRequest(string token, string location)
         {
-            _Token = token;
+            _Token    = token;
             _Location = location;
-            _Options = _NoRedirectionOptions;
+            _Options  = _NoRedirectionOptions;
         }
 
         public ForTokenRedirectToLocationRequest(string token, string location, IEnumerable<RedirectionOption> options)

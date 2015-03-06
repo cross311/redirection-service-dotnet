@@ -11,12 +11,12 @@
 
         public Redirection SaveRedirection(Redirection redirection)
         {
-            var token = redirection.Token;
-            var location = redirection.Location;
-            var caseInsensitiveToken = MakeTokenCaseInsensitive(token);
+            var token                 = redirection.Token;
+            var location              = redirection.Location;
+            var caseInsensitiveToken  = MakeTokenCaseInsensitive(token);
             var normalizedRedirection = new Redirection(caseInsensitiveToken, location);
 
-            var savedRedirection = _Core.SaveRedirection(normalizedRedirection);
+            var savedRedirection      = _Core.SaveRedirection(normalizedRedirection);
 
             return savedRedirection;
         }
@@ -25,7 +25,7 @@
         {
             var caseInsensitiveToken = MakeTokenCaseInsensitive(token);
 
-            var redirection = _Core.GetRedirectionForToken(caseInsensitiveToken);
+            var redirection          = _Core.GetRedirectionForToken(caseInsensitiveToken);
             return redirection;
         }
 

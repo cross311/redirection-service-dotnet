@@ -7,12 +7,12 @@ namespace RedirectionService
     {
         private readonly static RedirectionOption[] _NoRedirectionOptions = new RedirectionOption[0];
 
-        private readonly string _Token;
-        private readonly RedirectionOption[] _Options;
+        private readonly string                     _Token;
+        private readonly RedirectionOption[]        _Options;
 
         public LocationToRedirectForTokenRequest(string token)
         {
-            _Token = token;
+            _Token   = token;
             _Options = _NoRedirectionOptions;
         }
 

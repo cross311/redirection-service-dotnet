@@ -11,18 +11,18 @@ namespace RedirectionService
 
         public Redirection ForTokenRedirectToLocation(ForTokenRedirectToLocationRequest forTokenRedirectToLocationRequest)
         {
-            var token = forTokenRedirectToLocationRequest.Token;
-            var location = forTokenRedirectToLocationRequest.Location;
+            var token       = forTokenRedirectToLocationRequest.Token;
+            var location    = forTokenRedirectToLocationRequest.Location;
             var redirection = new Redirection(token, location);
 
-            redirection = _RedirectionRepository.SaveRedirection(redirection);
+            redirection     = _RedirectionRepository.SaveRedirection(redirection);
 
             return redirection;
         }
 
         public Redirection LocationToRedirectForToken(LocationToRedirectForTokenRequest locationToRedirectForTokenRequest)
         {
-            var token = locationToRedirectForTokenRequest.Token;
+            var token       = locationToRedirectForTokenRequest.Token;
             var redirection = _RedirectionRepository.GetRedirectionForToken(token);
 
             return redirection;

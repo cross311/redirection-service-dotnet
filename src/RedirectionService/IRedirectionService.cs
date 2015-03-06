@@ -8,7 +8,6 @@ namespace RedirectionService
     public interface IRedirectionService
     {
         Redirection ForTokenRedirectToLocation(ForTokenRedirectToLocationRequest forTokenRedirectToLocationRequest);
-
         Redirection LocationToRedirectForToken(LocationToRedirectForTokenRequest locationToRedirectForTokenRequest);
     }
 }

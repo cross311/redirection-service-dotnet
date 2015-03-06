@@ -7,7 +7,7 @@
 
         public Redirection(string token, string location)
         {
-            _Token = token;
+            _Token    = token;
             _Location = location;
         }
 
