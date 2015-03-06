@@ -39,8 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CaseInsensitiveTokenRedirectionRepository.cs" />
+    <Compile Include="ForTokenRedirectToLocationRequest.cs" />
+    <Compile Include="InMemoryRedirectionRepository.cs" />
+    <Compile Include="IRedirectionRepository.cs" />
     <Compile Include="IRedirectionService.cs" />
+    <Compile Include="LanguageBasedRedirectionService.cs" />
+    <Compile Include="LocationToRedirectForTokenRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Redirection.cs" />
+    <Compile Include="RedirectionOption.cs" />
+    <Compile Include="RedirectionServiceFactory.cs" />
+    <Compile Include="TokenBasedRedirectionService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
