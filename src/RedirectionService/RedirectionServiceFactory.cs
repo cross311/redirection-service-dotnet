@@ -10,7 +10,7 @@ namespace RedirectionService
 
             // SERVICE
             var tokenBasedRedirectionService  = new TokenBasedRedirectionService(redirectionRepository);
-            var redirectionService            = new LanguageBasedRedirectionService(tokenBasedRedirectionService);
+            var redirectionService            = new LanguageBasedTokenModificationRedirectionService(tokenBasedRedirectionService);
 
             return redirectionService;
         }

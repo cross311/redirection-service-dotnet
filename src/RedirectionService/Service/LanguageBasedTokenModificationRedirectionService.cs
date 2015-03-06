@@ -4,12 +4,12 @@ using System.Linq;
 
 namespace RedirectionService
 {
-    internal sealed class LanguageBasedRedirectionService : IRedirectionService
+    internal sealed class LanguageBasedTokenModificationRedirectionService : IRedirectionService
     {
         private const string                 _LanguageOptionKey = @"lang";
         private readonly IRedirectionService _Core;
 
-        public LanguageBasedRedirectionService(IRedirectionService core)
+        public LanguageBasedTokenModificationRedirectionService(IRedirectionService core)
         {
             _Core = core;
         }
