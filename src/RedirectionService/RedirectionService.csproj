@@ -44,11 +44,9 @@
     <Compile Include="Repository\InMemoryRedirectionRepository.cs" />
     <Compile Include="Repository\IRedirectionRepository.cs" />
     <Compile Include="Service\IRedirectionService.cs" />
-    <Compile Include="Service\LanguageBasedTokenModificationRedirectionService.cs" />
     <Compile Include="Service\LocationToRedirectForTokenRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Redirection.cs" />
-    <Compile Include="Model\RedirectionOption.cs" />
     <Compile Include="RedirectionServiceFactory.cs" />
     <Compile Include="Service\TokenBasedRedirectionService.cs" />
   </ItemGroup>

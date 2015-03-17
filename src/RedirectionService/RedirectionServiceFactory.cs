@@ -9,8 +9,7 @@ namespace RedirectionService
             var redirectionRepository         = new CaseInsensitiveTokenRedirectionRepository(inMemoryRedirectionRepository);
 
             // SERVICE
-            var tokenBasedRedirectionService  = new TokenBasedRedirectionService(redirectionRepository);
-            var redirectionService            = new LanguageBasedTokenModificationRedirectionService(tokenBasedRedirectionService);
+            var redirectionService = new TokenBasedRedirectionService(redirectionRepository);
 
             return redirectionService;
         }
