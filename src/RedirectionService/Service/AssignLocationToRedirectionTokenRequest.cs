@@ -3,12 +3,12 @@ using System.Linq;
 
 namespace RedirectionService
 {
-    public sealed class ForTokenRedirectToLocationRequest
+    public sealed class AssignLocationToRedirectionTokenRequest
     {
         private readonly string                     _Token;
         private readonly string                     _Location;
 
-        public ForTokenRedirectToLocationRequest(string token, string location)
+        public AssignLocationToRedirectionTokenRequest(string token, string location)
         {
             _Token    = token;
             _Location = location;

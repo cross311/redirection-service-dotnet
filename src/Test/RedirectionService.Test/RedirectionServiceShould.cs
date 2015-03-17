@@ -22,12 +22,12 @@ namespace RedirectionService.Test
             var token                             = @"test_token";
             var location                          = @"http://www.test_token_redirection_location.com";
 
-            var forTokenRedirectToLocationRequest = new ForTokenRedirectToLocationRequest(
+            var forTokenRedirectToLocationRequest = new AssignLocationToRedirectionTokenRequest(
                                                         token: token,
                                                         location: location);
 
             // act
-            var redirection = _RedirectionService.ForTokenRedirectToLocation(forTokenRedirectToLocationRequest);
+            var redirection = _RedirectionService.AssignLocationToRedirectionToken(forTokenRedirectToLocationRequest);
 
             //assert
             redirection.Token.Should().Be(token);
@@ -41,17 +41,17 @@ namespace RedirectionService.Test
             var token                  = @"test_token";
             var location               = @"http://www.test_token_redirection_location.com";
 
-            var forTokenRedirectToLocationRequest = new ForTokenRedirectToLocationRequest(
+            var forTokenRedirectToLocationRequest = new AssignLocationToRedirectionTokenRequest(
                                                         token: token,
                                                         location: location);
 
-            _RedirectionService.ForTokenRedirectToLocation(forTokenRedirectToLocationRequest);
+            _RedirectionService.AssignLocationToRedirectionToken(forTokenRedirectToLocationRequest);
 
-            var locationToRedirectForTokenRequest = new LocationToRedirectForTokenRequest(
+            var locationToRedirectForTokenRequest = new GetLocationForRedirectionTokenRequest(
                                                         token: token);
 
             // act
-            var redirection = _RedirectionService.LocationToRedirectForToken(locationToRedirectForTokenRequest);
+            var redirection = _RedirectionService.GetLocationForRedirectionToken(locationToRedirectForTokenRequest);
 
             // assert
             redirection.Token.Should().Be(token);
@@ -66,17 +66,17 @@ namespace RedirectionService.Test
             var upperCaseToken = lowerCaseToken.ToUpper();
             var location = @"http://www.test_token_redirection_location.com";
 
-            var forTokenRedirectToLocationRequest = new ForTokenRedirectToLocationRequest(
+            var forTokenRedirectToLocationRequest = new AssignLocationToRedirectionTokenRequest(
                                                         token: lowerCaseToken,
                                                         location: location);
 
-            _RedirectionService.ForTokenRedirectToLocation(forTokenRedirectToLocationRequest);
+            _RedirectionService.AssignLocationToRedirectionToken(forTokenRedirectToLocationRequest);
 
-            var locationToRedirectForTokenRequest = new LocationToRedirectForTokenRequest(
+            var locationToRedirectForTokenRequest = new GetLocationForRedirectionTokenRequest(
                                                         token: upperCaseToken);
 
             // act
-            var redirection = _RedirectionService.LocationToRedirectForToken(locationToRedirectForTokenRequest);
+            var redirection = _RedirectionService.GetLocationForRedirectionToken(locationToRedirectForTokenRequest);
 
             // assert
             redirection.Token.Should().Be(lowerCaseToken);
@@ -91,18 +91,18 @@ namespace RedirectionService.Test
             var location = @"http://www.test_token_redirection_location.com";
             var updatedLocation = @"http://www.test_token_redirection_location.com/update";
 
-            var forTokenRedirectToLocationRequest = new ForTokenRedirectToLocationRequest(
+            var forTokenRedirectToLocationRequest = new AssignLocationToRedirectionTokenRequest(
                                                         token: token,
                                                         location: location);
-            var updatedForTokenRedirectToLocationRequest = new ForTokenRedirectToLocationRequest(
+            var updatedForTokenRedirectToLocationRequest = new AssignLocationToRedirectionTokenRequest(
                                                         token: token,
                                                         location: updatedLocation);
-            var locationToRedirectForTokenRequest = new LocationToRedirectForTokenRequest(token);
+            var locationToRedirectForTokenRequest = new GetLocationForRedirectionTokenRequest(token);
 
             // act
-            _RedirectionService.ForTokenRedirectToLocation(forTokenRedirectToLocationRequest);
-            _RedirectionService.ForTokenRedirectToLocation(updatedForTokenRedirectToLocationRequest);
-            var redirection = _RedirectionService.LocationToRedirectForToken(locationToRedirectForTokenRequest);
+            _RedirectionService.AssignLocationToRedirectionToken(forTokenRedirectToLocationRequest);
+            _RedirectionService.AssignLocationToRedirectionToken(updatedForTokenRedirectToLocationRequest);
+            var redirection = _RedirectionService.GetLocationForRedirectionToken(locationToRedirectForTokenRequest);
 
             //assert
             redirection.Token.Should().Be(token);
@@ -114,10 +114,10 @@ namespace RedirectionService.Test
         {
             // arrange
             var token = @"test_token";
-            var locationToRedirectForTokenRequest = new LocationToRedirectForTokenRequest(token);
+            var locationToRedirectForTokenRequest = new GetLocationForRedirectionTokenRequest(token);
 
             // act
-            var redirection = _RedirectionService.LocationToRedirectForToken(locationToRedirectForTokenRequest);
+            var redirection = _RedirectionService.GetLocationForRedirectionToken(locationToRedirectForTokenRequest);
 
             //assert
             redirection.Should().Be(Redirection.Null);

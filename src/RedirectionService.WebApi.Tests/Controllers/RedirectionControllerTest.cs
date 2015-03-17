@@ -18,16 +18,16 @@ namespace RedirectionService.WebApi.Tests.Controllers
         public void Get_HappyPath()
         {
             // Arrange
-            var token = "token";
+            var token    = "token";
             var location = "http://location.com";
 
             var redirectionService = MockRepository.GenerateStub<IRedirectionService>();
-            var controller = new RedirectionController(redirectionService);
+            var controller         = new RedirectionController(redirectionService);
 
             redirectionService.Expect(
                 m =>
-                    m.LocationToRedirectForToken(
-                        Arg<LocationToRedirectForTokenRequest>.Matches(r => r.Token.Equals(token))))
+                    m.GetLocationForRedirectionToken(
+                        Arg<GetLocationForRedirectionTokenRequest>.Matches(r => r.Token.Equals(token))))
                 .Return(new Redirection(token, location));
 
             // Act
@@ -46,11 +46,11 @@ namespace RedirectionService.WebApi.Tests.Controllers
             var token = "token";
 
             var redirectionService = MockRepository.GenerateStub<IRedirectionService>();
-            var controller = new RedirectionController(redirectionService);
+            var controller         = new RedirectionController(redirectionService);
 
             redirectionService.Expect(
                 m =>
-                    m.LocationToRedirectForToken(Arg<LocationToRedirectForTokenRequest>.Is.Anything))
+                    m.GetLocationForRedirectionToken(Arg<GetLocationForRedirectionTokenRequest>.Is.Anything))
                 .Return(Redirection.Null);
 
             // Act
@@ -65,16 +65,16 @@ namespace RedirectionService.WebApi.Tests.Controllers
         public void Post_HappyPath()
         {
             // Arrange
-            var token = "token";
+            var token    = "token";
             var location = "http://location.com";
 
             var redirectionService = MockRepository.GenerateStub<IRedirectionService>();
-            var controller = new RedirectionController(redirectionService);
+            var controller         = new RedirectionController(redirectionService);
 
             redirectionService.Expect(
                 m =>
-                    m.ForTokenRedirectToLocation(
-                        Arg<ForTokenRedirectToLocationRequest>.Matches(r => r.Token.Equals(token) && r.Location.Equals(location))))
+                    m.AssignLocationToRedirectionToken(
+                        Arg<AssignLocationToRedirectionTokenRequest>.Matches(r => r.Token.Equals(token) && r.Location.Equals(location))))
                 .Return(new Redirection(token, location));
 
             // Act

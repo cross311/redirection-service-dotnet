@@ -40,11 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Repository\CaseInsensitiveTokenRedirectionRepository.cs" />
-    <Compile Include="Service\ForTokenRedirectToLocationRequest.cs" />
+    <Compile Include="Service\AssignLocationToRedirectionTokenRequest.cs" />
     <Compile Include="Repository\InMemoryRedirectionRepository.cs" />
     <Compile Include="Repository\IRedirectionRepository.cs" />
     <Compile Include="Service\IRedirectionService.cs" />
-    <Compile Include="Service\LocationToRedirectForTokenRequest.cs" />
+    <Compile Include="Service\GetLocationForRedirectionTokenRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Redirection.cs" />
     <Compile Include="RedirectionServiceFactory.cs" />

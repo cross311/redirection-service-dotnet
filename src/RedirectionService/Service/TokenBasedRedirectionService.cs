@@ -9,10 +9,10 @@ namespace RedirectionService
             _RedirectionRepository = redirectionRepository;
         }
 
-        public Redirection ForTokenRedirectToLocation(ForTokenRedirectToLocationRequest forTokenRedirectToLocationRequest)
+        public Redirection AssignLocationToRedirectionToken(AssignLocationToRedirectionTokenRequest assignLocationToRedirectionTokenRequest)
         {
-            var token       = forTokenRedirectToLocationRequest.Token;
-            var location    = forTokenRedirectToLocationRequest.Location;
+            var token       = assignLocationToRedirectionTokenRequest.Token;
+            var location    = assignLocationToRedirectionTokenRequest.Location;
             var redirection = new Redirection(token, location);
 
             redirection     = _RedirectionRepository.SaveRedirection(redirection);
@@ -20,9 +20,9 @@ namespace RedirectionService
             return redirection;
         }
 
-        public Redirection LocationToRedirectForToken(LocationToRedirectForTokenRequest locationToRedirectForTokenRequest)
+        public Redirection GetLocationForRedirectionToken(GetLocationForRedirectionTokenRequest getLocationForRedirectionTokenRequest)
         {
-            var token       = locationToRedirectForTokenRequest.Token;
+            var token       = getLocationForRedirectionTokenRequest.Token;
             var redirection = _RedirectionRepository.GetRedirectionForToken(token);
 
             return redirection;

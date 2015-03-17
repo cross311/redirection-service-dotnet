@@ -7,7 +7,7 @@ namespace RedirectionService
 {
     public interface IRedirectionService
     {
-        Redirection ForTokenRedirectToLocation(ForTokenRedirectToLocationRequest forTokenRedirectToLocationRequest);
-        Redirection LocationToRedirectForToken(LocationToRedirectForTokenRequest locationToRedirectForTokenRequest);
+        Redirection AssignLocationToRedirectionToken(AssignLocationToRedirectionTokenRequest assignLocationToRedirectionTokenRequest);
+        Redirection GetLocationForRedirectionToken(GetLocationForRedirectionTokenRequest getLocationForRedirectionTokenRequest);
     }
 }
