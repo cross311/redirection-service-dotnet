@@ -64,6 +64,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RedirectionService.Auditing\RedirectionService.Auditing.csproj">
+      <Project>{eaf26673-9aba-4c6e-959f-109fd45f58cf}</Project>
+      <Name>RedirectionService.Auditing</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

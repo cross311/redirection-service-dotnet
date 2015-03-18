@@ -29,7 +29,7 @@ namespace RedirectionService.Auditing.Test
             var auditRedirectionRequest = new AuditRedirectionRequest(action, token, location, actorIp, actor);
 
             // act
-            Audit audit = _AuditService.AuditRedirection(auditRedirectionRequest);
+            var audit = _AuditService.AuditRedirection(auditRedirectionRequest);
 
             // assert
 
@@ -38,12 +38,13 @@ namespace RedirectionService.Auditing.Test
             audit.Actor.Should().Be(actor);
             audit.ActorIp.Should().Be(actorIp);
             audit.Created.Should().BeCloseTo(DateTime.UtcNow);
-            audit.AdditionalInformation.Should()
-                .Contain(new[]
-                {
-                    new AdditionalInformation("token", token),
-                    new AdditionalInformation("location", location)
-                });
+            var additionalInformations = new[]
+            {
+                new AdditionalInformation("token", token),
+                new AdditionalInformation("location", location)
+            };
+
+            audit.AdditionalInformation.Should().Contain(additionalInformations);
         }
     }
 }
