@@ -21,15 +21,21 @@ namespace RedirectionService.Auditing.Test
         {
             // arrange
 
-            var action                  = "retrieve";
+            var action                  = "redirection.retrieve";
             var token                   = "token";
             var location                = "https://location.com";
             var actorIp                 = "192.168.0.1";
             var actor                   = "cross@mdsol.com";
-            var auditRedirectionRequest = new AuditRedirectionRequest(action, token, location, actorIp, actor);
+            var additionalInformations  = new[]
+                                            {
+                                                new AdditionalInformation("token", token),
+                                                new AdditionalInformation("location", location)
+                                            };
+
+            var auditRequest = new AuditRequest(action, actorIp, actor, additionalInformations);
 
             // act
-            var audit = _AuditService.AuditRedirection(auditRedirectionRequest);
+            var audit = _AuditService.Audit(auditRequest);
 
             // assert
 
@@ -38,11 +44,6 @@ namespace RedirectionService.Auditing.Test
             audit.Actor.Should().Be(actor);
             audit.ActorIp.Should().Be(actorIp);
             audit.Created.Should().BeCloseTo(DateTime.UtcNow);
-            var additionalInformations = new[]
-            {
-                new AdditionalInformation("token", token),
-                new AdditionalInformation("location", location)
-            };
 
             audit.AdditionalInformation.Should().Contain(additionalInformations);
         }

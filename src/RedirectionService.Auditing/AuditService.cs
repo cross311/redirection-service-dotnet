@@ -7,23 +7,16 @@ namespace RedirectionService.Auditing
 {
     internal sealed class AuditService : IAuditService
     {
-        public Audit AuditRedirection(AuditRedirectionRequest request)
+        public Audit Audit(AuditRequest request)
         {
             if(ReferenceEquals(request, null)) throw new ArgumentNullException("request");
-
-
-            var additionalInformation = new[]
-            {
-                new AdditionalInformation("token", request.Token),
-                new AdditionalInformation("location", request.Location)
-            };
             var created = DateTime.UtcNow;
 
             var audit = new Audit(
-                string.Format("redirection.{0}", request.Action),
+                request.Action,
                 request.ActorIp,
                 request.Actor,
-                additionalInformation,
+                request.AdditionalInformation,
                 created);
 
             return audit;

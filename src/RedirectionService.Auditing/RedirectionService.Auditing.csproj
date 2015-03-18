@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="AdditionalInformation.cs" />
     <Compile Include="Audit.cs" />
-    <Compile Include="AuditRedirectionRequest.cs" />
+    <Compile Include="AuditRequest.cs" />
     <Compile Include="AuditService.cs" />
     <Compile Include="AuditServiceFactory.cs" />
     <Compile Include="IAuditService.cs" />

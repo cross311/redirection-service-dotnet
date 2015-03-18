@@ -2,6 +2,6 @@
 {
     public interface IAuditService
     {
-        Audit AuditRedirection(AuditRedirectionRequest request);
+        Audit Audit(AuditRequest request);
     }
 }
