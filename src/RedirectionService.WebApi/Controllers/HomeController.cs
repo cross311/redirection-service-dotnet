@@ -10,9 +10,7 @@ namespace RedirectionService.WebApi.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
-
-            return View();
+            return Json(new {version = "1.0.0", service = "redirection", status = "ok"}, JsonRequestBehavior.AllowGet);
         }
     }
 }
