@@ -94,6 +94,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\WebApiAuditingRedirectionServiceShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\RedirectionControllerTest.cs" />
   </ItemGroup>
@@ -104,6 +105,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RedirectionService.Auditing\RedirectionService.Auditing.csproj">
+      <Project>{eaf26673-9aba-4c6e-959f-109fd45f58cf}</Project>
+      <Name>RedirectionService.Auditing</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RedirectionService.WebApi\RedirectionService.WebApi.csproj">
       <Project>{428B7A72-4878-423B-9497-99BBBFAFBA35}</Project>
       <Name>RedirectionService.WebApi</Name>

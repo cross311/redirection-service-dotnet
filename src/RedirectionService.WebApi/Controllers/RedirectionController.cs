@@ -16,6 +16,7 @@ namespace RedirectionService.WebApi.Controllers
             _RedirectionService = redirectionService;
         }
 
+        [HttpGet]
         public IHttpActionResult Get(string token)
         {
             var locationToRedirectForTokenRequest = new GetLocationForRedirectionTokenRequest(token);

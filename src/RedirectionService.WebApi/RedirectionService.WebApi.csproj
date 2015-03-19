@@ -113,7 +113,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -124,6 +123,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\HttpUserRequestRepository.cs" />
+    <Compile Include="Models\IUserRequestRepository.cs" />
+    <Compile Include="Models\UserRequest.cs" />
+    <Compile Include="Models\WebApiAuditingRedirectionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +140,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RedirectionService.Auditing\RedirectionService.Auditing.csproj">
+      <Project>{eaf26673-9aba-4c6e-959f-109fd45f58cf}</Project>
+      <Name>RedirectionService.Auditing</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RedirectionService\RedirectionService.csproj">
       <Project>{70d7b1ce-0429-4765-85aa-6d44228d11db}</Project>
       <Name>RedirectionService</Name>

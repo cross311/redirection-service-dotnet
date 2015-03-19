@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using RedirectionService.Auditing;
+using RedirectionService.WebApi.Models;
 
 namespace RedirectionService.WebApi
 {
@@ -34,7 +36,15 @@ namespace RedirectionService.WebApi
 
         static RedirectionServiceConfig()
         {
-            RedirectionService = new RedirectionServiceFactory().Build();
+            var auditService                     = new AuditServiceFactory().Build();
+            var coreRedirectionService           = new RedirectionServiceFactory().Build();
+            var httpUserRequestRepository        = new HttpUserRequestRepository();
+            var webApiAuditingRedirectionService = new WebApiAuditingRedirectionService(
+                coreRedirectionService,
+                auditService,
+                httpUserRequestRepository);
+
+            RedirectionService = webApiAuditingRedirectionService;
         }
     }
 }
