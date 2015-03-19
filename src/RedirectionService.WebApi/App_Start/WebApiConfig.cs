@@ -18,13 +18,13 @@ namespace RedirectionService.WebApi
 
             config.Routes.MapHttpRoute(
                 name: "token",
-                routeTemplate: "api/redirection/{token}",
-                defaults: new { controller = "Redirection", token = RouteParameter.Optional }
+                routeTemplate: "redirection/{token}",
+                defaults: new { controller = "RedirectionController", token = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
         }

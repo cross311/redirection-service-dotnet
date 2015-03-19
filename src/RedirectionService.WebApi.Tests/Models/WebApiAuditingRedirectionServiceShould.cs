@@ -141,7 +141,7 @@ namespace RedirectionService.WebApi.Tests.Models
         {
             // arrange
             var token = "token";
-            var request = new GetLocationForRedirectionTokenRequest("token");
+            var request = new GetLocationForRedirectionTokenRequest(token);
             _CoreRedirectionService.Expect(
                 s => s.GetLocationForRedirectionToken(Arg<GetLocationForRedirectionTokenRequest>.Is.Equal(request)))
                 .Return(Redirection.Null);
