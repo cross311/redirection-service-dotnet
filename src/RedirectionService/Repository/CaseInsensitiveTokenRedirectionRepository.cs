@@ -14,7 +14,7 @@
             var token                 = redirection.Token;
             var location              = redirection.Location;
             var caseInsensitiveToken  = MakeTokenCaseInsensitive(token);
-            var normalizedRedirection = new Redirection(caseInsensitiveToken, location);
+            var normalizedRedirection = Redirection.Create(caseInsensitiveToken, location);
 
             var savedRedirection      = _Core.SaveRedirection(normalizedRedirection);
 

@@ -13,7 +13,7 @@ namespace RedirectionService
         {
             var token       = assignLocationToRedirectionTokenRequest.Token;
             var location    = assignLocationToRedirectionTokenRequest.Location;
-            var redirection = new Redirection(token, location);
+            var redirection = Redirection.Create(token, location);
 
             redirection     = _RedirectionRepository.SaveRedirection(redirection);
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 
@@ -32,6 +33,8 @@ namespace RedirectionService.Test
             //assert
             redirection.Token.Should().Be(token);
             redirection.Location.Should().Be(location);
+            redirection.Created.Should().BeCloseTo(DateTime.UtcNow);
+            redirection.Updated.Should().Be(redirection.Created);
         }
 
         [TestMethod]
@@ -100,13 +103,16 @@ namespace RedirectionService.Test
             var locationToRedirectForTokenRequest = new GetLocationForRedirectionTokenRequest(token);
 
             // act
-            _RedirectionService.AssignLocationToRedirectionToken(forTokenRedirectToLocationRequest);
+            var intialCreatedRedirection = _RedirectionService.AssignLocationToRedirectionToken(forTokenRedirectToLocationRequest);
+            Thread.Sleep(1);
             _RedirectionService.AssignLocationToRedirectionToken(updatedForTokenRedirectToLocationRequest);
             var redirection = _RedirectionService.GetLocationForRedirectionToken(locationToRedirectForTokenRequest);
 
             //assert
             redirection.Token.Should().Be(token);
             redirection.Location.Should().Be(updatedLocation);
+            redirection.Created.Should().Be(intialCreatedRedirection.Created);
+            redirection.Updated.Should().BeAfter(redirection.Created);
         }
 
         [TestMethod]

@@ -28,7 +28,7 @@ namespace RedirectionService.WebApi.Tests.Controllers
                 m =>
                     m.GetLocationForRedirectionToken(
                         Arg<GetLocationForRedirectionTokenRequest>.Matches(r => r.Token.Equals(token))))
-                .Return(new Redirection(token, location));
+                .Return(Redirection.Create(token, location));
 
             // Act
             var result = controller.Get(token);
@@ -75,7 +75,7 @@ namespace RedirectionService.WebApi.Tests.Controllers
                 m =>
                     m.AssignLocationToRedirectionToken(
                         Arg<AssignLocationToRedirectionTokenRequest>.Matches(r => r.Token.Equals(token) && r.Location.Equals(location))))
-                .Return(new Redirection(token, location));
+                .Return(Redirection.Create(token, location));
 
             // Act
             var result = controller.Post(token, location);

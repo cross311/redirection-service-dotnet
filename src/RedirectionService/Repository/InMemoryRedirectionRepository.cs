@@ -13,7 +13,7 @@ namespace RedirectionService
 
         public Redirection SaveRedirection(Redirection redirection)
         {
-            var savedRedirection = _Database.AddOrUpdate(redirection.Token, redirection, (token, oldRedirectino) => redirection);
+            var savedRedirection = _Database.AddOrUpdate(redirection.Token, redirection, (token, oldRedirection) => oldRedirection.UpdateLocation(redirection.Location));
 
             return savedRedirection;
         }
